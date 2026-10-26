@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pro Tournament</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">PT</span><div><strong>PRO TOURNAMENT</strong><small>COMMUNITY ESPORTS</small></div></div>
+  <button id="adminToggle" class="outline">Admin Login</button>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">🔥 COMPETE • CLIMB • CONQUER</div>
+    <h1>Your next <span>Victory</span><br>starts here.</h1>
+    <p>Join community tournaments, check match details and track results in one place.</p>
+    <a href="#tournaments" class="primary linkbtn">Explore tournaments</a>
+    <div class="stats"><div><b id="statTournaments">0</b><small>TOURNAMENTS</small></div><div><b>SOLO / DUO / SQUAD</b><small>GAME MODES</small></div><div><b>LIVE</b><small>COMMUNITY</small></div></div>
+  </section>
+  <section id="tournaments" class="section">
+    <div class="sectionhead"><div><div class="eyebrow">FIND YOUR MATCH</div><h2>Available tournaments</h2></div><select id="filter"><option value="all">All tournaments</option><option value="Free">Free entry</option><option value="Paid">Paid entry</option></select></div>
+    <div id="tournamentList" class="cards"></div>
+  </section>
+  <section class="section how"><div class="eyebrow">HOW IT WORKS</div><h2>Three simple steps</h2><div class="steps"><article><span>01</span><h3>Choose a match</h3><p>Pick a free or paid listing and check its rules.</p></article><article><span>02</span><h3>Register</h3><p>Enter your player name and in-game UID.</p></article><article><span>03</span><h3>Play fair</h3><p>Room details and results are shared by the organiser.</p></article></div></section>
+  <footer>Pro Tournament is a community project and is not affiliated with or endorsed by Garena. Use only tournaments you trust.</footer>
+</main>
+<div id="joinModal" class="modal hidden"><div class="modalbox"><button class="x" data-close="joinModal">×</button><h2>Join tournament</h2><p id="joinTitle" class="muted"></p><form id="joinForm"><input type="hidden" id="joinTournamentId"><label>Player name<input id="playerName" required maxlength="40" placeholder="Your in-game name"></label><label>Free Fire UID<input id="playerUid" required inputmode="numeric" pattern="[0-9]{5,20}" placeholder="Numeric UID (5–20 digits)"></label><label>Contact (optional)<input id="playerContact" maxlength="80" placeholder="Email or contact handle"></label><p id="joinNote" class="note"></p><button class="primary" type="submit">Submit registration</button></form><div id="joinResult" class="notice hidden"></div></div></div>
+<div id="adminModal" class="modal hidden"><div class="modalbox wide"><button class="x" data-close="adminModal">×</button><h2>Admin panel</h2><div id="adminLoginArea"><p class="muted">Demo admin login. Set your own password before publishing.</p><form id="adminLoginForm"><label>Admin password<input id="adminPassword" type="password" required placeholder="Enter admin password"></label><button class="primary">Log in</button></form></div><div id="adminArea" class="hidden">
+<div class="adminbar"><span class="pill">ADMIN MODE</span><button id="logout" class="outline">Log out</button></div>
+<h3>Create tournament</h3><form id="createForm" class="formgrid">
+<label>Tournament name<input id="tName" required maxlength="80" placeholder="Friday Squad Clash"></label>
+<label>Mode<select id="tMode"><option>Solo</option><option>Duo</option><option selected>Squad</option></select></label>
+<label>Entry type<select id="tType"><option>Free</option><option>Paid</option></select></label>
+<label>Entry fee (₹)<input id="tFee" type="number" min="0" max="100000" value="0" required></label>
+<label>Prize pool (₹)<input id="tPrize" type="number" min="0" max="10000000" value="0" required></label>
+<label>Start date/time<input id="tDate" type="datetime-local" required></label>
+<label>Slots<input id="tSlots" type="number" min="2" max="1000" value="48" required></label>
+<label>Status<select id="tStatus"><option>Open</option><option>Full</option><option>Completed</option></select></label>
+<label class="full">Rules / notes<textarea id="tRules" rows="3" maxlength="500" placeholder="Map, match rules, fair-play rules…"></textarea></label>
+<label class="full">Room ID (optional)<input id="tRoom" maxlength="40" placeholder="Only publish when ready"></label>
+<label class="full">Room password (optional)<input id="tRoomPass" maxlength="40" placeholder="Share only with registered players"></label>
+<div class="full"><button class="primary">Create tournament</button></div>
+</form>
+<h3>Manage tournaments</h3><div id="adminTournaments"></div>
+<h3>Registrations</h3><div id="adminRegistrations"></div>
+<div class="backuprow"><button id="exportData" class="outline">Export backup JSON</button><label class="upload outline">Import backup JSON<input type="file" id="importData" accept=".json,application/json"></label><button id="resetData" class="danger">Reset demo data</button></div>
+<p class="warning">Prototype limitation: data is stored in this browser only. Do not collect real payments or sensitive information. This admin login is not secure for a public website.</p>
+</div></div></div>
+<div id="toast" class="toast hidden"></div>
+<script src="app.js"></script>
+</body></html>
